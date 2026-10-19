@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "一起去欧洲",
+    "navigationBarBackgroundColor": "#f1f3e9",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f7ef",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

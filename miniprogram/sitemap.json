@@ -1,0 +1,6 @@
+{
+  "desc": "本地样板课",
+  "rules": [
+    { "action": "allow", "page": "*" }
+  ]
+}
