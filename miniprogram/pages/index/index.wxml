@@ -1,0 +1,148 @@
+<view class="page-shell">
+  <view wx:if="{{notice}}" class="notice">{{notice}}</view>
+
+  <block wx:if="{{screen === 'home'}}">
+    <view class="page-title">今天学一点</view>
+    <view class="home-card">
+      <view class="cover-map">
+        <image class="cover-image" src="/assets/world-nasa.jpg" mode="aspectFill"></image>
+        <view class="cover-label cover-europe">欧洲</view>
+        <view class="cover-label cover-asia">亚洲</view>
+      </view>
+      <view class="home-content">
+        <view class="card-title">欧洲在哪里？</view>
+        <button class="primary" bindtap="startLesson">{{startLabel}} →</button>
+        <view wx:if="{{completed}}" class="done-line">✓ 已学完</view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:elif="{{screen === 'lesson'}}">
+    <button class="back-button" bindtap="goHome">← 回到首页</button>
+    <view class="stepper">
+      <view class="step {{step === 0 ? 'current' : 'done'}}">{{step === 0 ? '1' : '✓'}} 认识欧洲</view>
+      <view class="step-line"></view>
+      <view class="step {{step === 1 ? 'current' : ''}}">2 开口说一句</view>
+    </view>
+
+    <block wx:if="{{step === 0}}">
+      <view class="page-title">认识欧洲</view>
+
+      <view class="view-tabs">
+        <button wx:for="{{viewTabs}}" wx:key="id" class="tab {{geoView === item.id ? 'active' : ''}}" data-view="{{item.id}}" bindtap="changeView">{{item.label}}</button>
+      </view>
+
+      <view wx:if="{{geoView === 'overview'}}" class="region-tabs">
+        <button wx:for="{{regionTabs}}" wx:key="id" class="region-tab {{geoRegion === item.id ? 'active' : ''}}" data-region="{{item.id}}" bindtap="changeRegion">{{item.label}}</button>
+      </view>
+
+      <view class="map-card">
+        <view class="map-window" style="height:{{mapHeight}}rpx;">
+          <image class="map-image" style="{{imageStyle}}" src="/assets/world-nasa.jpg" mode="scaleToFill"></image>
+          <block wx:for="{{markers}}" wx:key="key">
+            <view wx:if="{{item.type === 'point'}}" class="map-point" style="{{item.style}}"></view>
+            <view wx:elif="{{item.type === 'active'}}" class="active-marker" style="{{item.style}}"><view class="active-dot"></view><view class="active-label">{{item.name}}</view></view>
+            <view wx:else class="map-label" style="{{item.style}}">{{item.name}}</view>
+          </block>
+        </view>
+        <view class="map-footer">
+          <view>位置示意 · 非国界图</view>
+          <button class="link-button" bindtap="openSource">素材来源</button>
+        </view>
+      </view>
+
+      <view wx:if="{{isWorldView}}" class="knowledge-card">欧洲在亚洲西边，两洲连成欧亚大陆。</view>
+
+      <view wx:elif="{{isTripView}}" class="knowledge-card">
+        <view>英国在法国的西北方，中间隔着海。</view>
+        <view class="second-line">这次旅行：英国、法国。</view>
+      </view>
+
+      <view wx:elif="{{currentRegion}}" class="country-card">
+        <view class="section-heading">
+          <view class="section-title">{{currentRegion.name}}{{currentRegion.id === 'disputed' ? '' : ' · ' + currentRegion.countries.length + ' 国'}}</view>
+          <button class="link-button" bindtap="openGeographyInfo">分区说明</button>
+        </view>
+        <view class="region-fact">{{currentRegion.intro}}</view>
+        <view class="country-grid">
+          <button wx:for="{{countryButtons}}" wx:key="id" class="country-button {{item.selected ? 'active' : ''}}" data-country="{{item.id}}" bindtap="selectCountry">{{item.name}}</button>
+        </view>
+        <view class="country-result">地图定位：<text class="strong">{{selectedCountry.name}}{{selectedCountry.id === 'RUS' ? '（欧洲部分）' : ''}}</text></view>
+      </view>
+
+      <view wx:else class="overview-card">
+        <view class="section-heading">
+          <view class="section-title">先认识欧洲</view>
+          <button class="link-button" bindtap="openGeographyInfo">分区说明</button>
+        </view>
+        <view class="overview-line">欧洲在欧亚大陆的西部。</view>
+        <view class="region-cards">
+          <button wx:for="{{mainRegions}}" wx:key="id" class="region-card" data-region="{{item.id}}" bindtap="changeRegion">
+            <text class="strong">{{item.name}}</text><text>{{item.countries.length}} 国 →</text>
+          </button>
+        </view>
+      </view>
+
+      <button class="primary lesson-next" bindtap="nextStep">接下来，学一句英语 →</button>
+    </block>
+
+    <block wx:else>
+      <view class="page-title">说声你好</view>
+      <view class="english-card">
+        <view class="hello">Hello!</view>
+        <view class="translation">你好！</view>
+        <view class="audio-row">
+          <button class="audio-button" disabled="{{true}}">▷ 听原速</button>
+          <button class="audio-button" disabled="{{true}}">▷ 听慢速</button>
+        </view>
+        <view class="status-line">真人发音暂不可用</view>
+      </view>
+
+      <view class="practice-card">
+        <view class="section-title">轮到你说一句</view>
+        <button class="record-button {{recording ? 'recording' : ''}}" disabled="{{!recorderSupported}}" bindtap="toggleRecording">
+          {{recording ? '■ 说好了，停止录音' : (recordPath ? '● 重新录一遍' : '● 录下我的声音')}}
+        </button>
+        <view class="record-status">{{recordStatus}}</view>
+        <button wx:if="{{recordPath}}" class="play-button" bindtap="playRecording">▷ 回放我的录音</button>
+      </view>
+
+      <view class="lesson-actions">
+        <button class="secondary" bindtap="previousStep">← 再看一下地图</button>
+        <button class="primary" bindtap="completeLesson">{{completed ? '回看完成' : '今天学好了'}} ✓</button>
+      </view>
+    </block>
+  </block>
+
+  <block wx:else>
+    <view class="completion-card">
+      <view class="checkmark">✓</view>
+      <view class="page-title">今天学好了</view>
+      <view class="completion-line">你已经知道欧洲在哪里，也说了一句 Hello。</view>
+      <button class="primary" bindtap="goHome">回到首页</button>
+      <button class="secondary" bindtap="reviewLesson">再看一遍</button>
+    </view>
+  </block>
+</view>
+
+<view wx:if="{{showSource}}" class="modal-mask" bindtap="closeSource">
+  <view class="modal" catchtap="stopBubble">
+    <view class="modal-title">这张图从哪里来？</view>
+    <view class="modal-text">地球底图来自 NASA Blue Marble，是现成的卫星数据合成图，不是 AI 生成图片。</view>
+    <view class="modal-text">页面只加了位置提示。图片不表示国界或真实航线。</view>
+    <button class="primary" bindtap="closeSource">知道了</button>
+  </view>
+</view>
+
+<view wx:if="{{showGeographyInfo}}" class="modal-mask" bindtap="closeGeographyInfo">
+  <view class="modal scroll-modal" catchtap="stopBubble">
+    <view class="modal-title">这页怎样划分欧洲？</view>
+    <scroll-view scroll-y="{{true}}" class="modal-scroll">
+      <view class="modal-text">西欧、东欧、北欧、南欧采用联合国 M49 统计分区，共列 44 个国家。</view>
+      <view class="modal-text">英国、爱尔兰归在北欧；德国、奥地利归在西欧；波兰、捷克归在东欧。</view>
+      <view class="modal-text">另列 6 个与欧洲相关的国家；科索沃单独展示，不计入国家总数。</view>
+      <view class="modal-text">地图点位仅表示大致位置，不表示国土中心或国界。</view>
+    </scroll-view>
+    <button class="primary" bindtap="closeGeographyInfo">知道了</button>
+  </view>
+</view>

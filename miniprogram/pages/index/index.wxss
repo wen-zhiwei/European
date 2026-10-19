@@ -1,0 +1,67 @@
+.page-shell { padding: 32rpx 32rpx 64rpx; }
+.page-title { font-size: 54rpx; line-height: 1.25; font-weight: 700; margin: 24rpx 0 34rpx; color: #253f36; }
+.notice { margin-bottom: 24rpx; padding: 22rpx 24rpx; border-radius: 18rpx; background: #fff2d7; color: #7a411e; font-size: 30rpx; line-height: 1.5; }
+.home-card, .map-card, .english-card, .practice-card, .completion-card { background: #fffef9; border-radius: 28rpx; overflow: hidden; box-shadow: 0 12rpx 34rpx rgba(37, 63, 54, .08); }
+.cover-map { position: relative; height: 360rpx; overflow: hidden; background: #183451; }
+.cover-image { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cover-label, .map-label { position: absolute; transform: translate(-50%, -50%); padding: 10rpx 18rpx; border-radius: 14rpx; background: #fffdf0; color: #163e30; font-size: 32rpx; font-weight: 700; white-space: nowrap; box-shadow: 0 4rpx 16rpx rgba(0,0,0,.22); }
+.cover-europe { left: 55%; top: 30%; }
+.cover-asia { left: 73%; top: 47%; }
+.home-content { padding: 34rpx; }
+.card-title { font-size: 42rpx; font-weight: 700; margin-bottom: 28rpx; }
+.primary, .secondary, .record-button, .play-button { width: 100%; min-height: 104rpx; border-radius: 22rpx; display: flex; align-items: center; justify-content: center; font-size: 34rpx; font-weight: 700; line-height: 1.35; padding: 20rpx 24rpx; }
+.primary { background: #284e40; color: #fff; }
+.secondary { background: #fffef9; color: #284e40; border: 2rpx solid #9fac9d; }
+.done-line { margin-top: 24rpx; color: #284e40; font-size: 32rpx; font-weight: 700; text-align: center; }
+.back-button, .link-button { margin: 0; padding: 12rpx 0; line-height: 1.4; background: transparent; color: #284e40; text-decoration: underline; font-size: 30rpx; }
+.back-button { min-height: 72rpx; text-decoration: none; font-weight: 650; }
+.stepper { display: flex; align-items: center; gap: 12rpx; margin: 20rpx 0 18rpx; font-size: 28rpx; }
+.step { color: #6b756f; white-space: nowrap; }
+.step.current, .step.done { color: #284e40; font-weight: 700; }
+.step-line { height: 2rpx; background: #cbd4c5; flex: 1; }
+.view-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12rpx; margin-bottom: 18rpx; }
+.region-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10rpx; margin-bottom: 22rpx; }
+.tab, .region-tab, .country-button { min-height: 92rpx; border: 2rpx solid #d8e0d3; border-radius: 18rpx; background: #fffef9; color: #284e40; font-size: 30rpx; padding: 14rpx 8rpx; line-height: 1.35; }
+.tab.active, .region-tab.active, .country-button.active { background: #284e40; color: #fff; border-color: #284e40; }
+.map-window { position: relative; overflow: hidden; background: #183451; }
+.map-image { position: absolute; max-width: none; max-height: none; }
+.map-point { position: absolute; width: 14rpx; height: 14rpx; border-radius: 50%; background: #fff; border: 4rpx solid #bd6b3b; transform: translate(-50%, -50%); }
+.active-marker { position: absolute; transform: translate(-50%, -50%); }
+.active-dot { width: 28rpx; height: 28rpx; border-radius: 50%; background: #e67d3b; border: 5rpx solid #fff; box-shadow: 0 0 0 10rpx rgba(230, 125, 59, .42); }
+.active-label { position: absolute; left: 34rpx; top: -20rpx; padding: 10rpx 16rpx; border-radius: 12rpx; background: #fffdf0; color: #284e40; font-size: 30rpx; font-weight: 700; white-space: nowrap; }
+.map-footer { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; padding: 14rpx 22rpx; color: #53665e; font-size: 28rpx; }
+.knowledge-card, .overview-card, .country-card { margin-top: 26rpx; padding: 30rpx; border-radius: 24rpx; background: #eef0e4; font-size: 34rpx; line-height: 1.65; }
+.second-line { margin-top: 14rpx; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 18rpx; }
+.section-title { font-size: 40rpx; font-weight: 700; line-height: 1.4; }
+.overview-line, .region-fact { margin: 20rpx 0 24rpx; font-size: 34rpx; line-height: 1.6; }
+.region-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14rpx; }
+.region-card { min-height: 104rpx; padding: 18rpx; border-radius: 18rpx; border: 2rpx solid #d8e0d3; background: #fffef9; color: #284e40; display: flex; align-items: center; justify-content: space-between; gap: 10rpx; font-size: 30rpx; }
+.strong { font-weight: 700; }
+.country-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12rpx; }
+.country-result { margin-top: 24rpx; font-size: 34rpx; }
+.lesson-next { margin-top: 32rpx; }
+.english-card { text-align: center; padding: 46rpx 30rpx 38rpx; }
+.hello { font-size: 92rpx; line-height: 1.1; font-weight: 750; color: #284e40; }
+.translation { margin: 18rpx 0 34rpx; font-size: 42rpx; }
+.audio-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14rpx; }
+.audio-button { min-height: 92rpx; border-radius: 18rpx; background: #e8e8e0; color: #7f8581; font-size: 30rpx; }
+.status-line, .record-status { margin-top: 24rpx; font-size: 30rpx; line-height: 1.5; color: #53665e; }
+.practice-card { margin-top: 26rpx; padding: 34rpx; }
+.record-button { margin-top: 28rpx; background: #b46635; color: #fff; }
+.record-button.recording { background: #873d2b; }
+.play-button { margin-top: 22rpx; background: #e9efdf; color: #284e40; }
+.lesson-actions { display: grid; gap: 16rpx; margin-top: 30rpx; }
+.completion-card { padding: 48rpx 34rpx; text-align: center; }
+.completion-card .page-title { margin-top: 20rpx; }
+.checkmark { width: 112rpx; height: 112rpx; margin: 0 auto; border-radius: 50%; background: #284e40; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 72rpx; font-weight: 700; }
+.completion-line { margin: 0 0 34rpx; font-size: 34rpx; line-height: 1.65; }
+.completion-card .secondary { margin-top: 16rpx; }
+.modal-mask { position: fixed; z-index: 100; inset: 0; background: rgba(19, 35, 30, .58); display: flex; align-items: center; justify-content: center; padding: 34rpx; }
+.modal { width: 100%; max-height: 86vh; padding: 34rpx; border-radius: 28rpx; background: #fffef9; box-sizing: border-box; }
+.modal-title { font-size: 42rpx; font-weight: 700; margin-bottom: 24rpx; }
+.modal-text { font-size: 32rpx; line-height: 1.65; margin-bottom: 20rpx; }
+.modal-scroll { max-height: 54vh; margin-bottom: 24rpx; }
+@media (min-width: 900px) {
+  .page-shell { max-width: 900rpx; margin: 0 auto; }
+}
